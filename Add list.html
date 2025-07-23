@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamically Add List Items</title>
+    <style>
+        body{
+            font-family:sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f7f7;
+            margin:0;
+        }
+
+        h1{
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul{
+            list-style-type: none;
+            padding: 0;
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
+        ul li{
+            background: #fff;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-size:18px;
+        }
+
+        button{
+            padding: 12px 20px;
+            font-size: 16px;
+            color:#fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+     <h1>Dynamic List</h1>
+
+     <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+     </ul>
+
+     <button id="addBtn">Add New Items</button>
+
+     <script>
+        const addBtn = document.getElementById('addBtn');
+        const itemList = document.getElementById('itemList');
+        let count =4;
+
+        addBtn.addEventListener('click',function(){
+            const newItem = document.createElement('li');
+            newItem.textContent = `Item ${count}`;
+            count++;
+
+            itemList.appendChild(newItem);
+        });
+     </script>
+    
+</body>
+</html>

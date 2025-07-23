@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: palegoldenrod;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .gallery{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap:15px;
+        }
+
+        .gallery img{
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover{
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @media(max-width: 768px) {
+            h1{
+                font-size: 1.8rem;
+            }
+            .gallery{
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+        }
+
+        @media(max-width:480px){
+            h1{
+                font-size: 1.5rem;
+            }
+            .gallery{
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Responsive Photo Gallery</h1>
+
+    <div class="gallery">
+        <img src="https://blenderartists.org/uploads/default/optimized/4X/5/d/6/5d67bec3977ef808d79673f3b427856b86f0215e_2_333x500.jpeg" alt="">
+        <img src="https://th.bing.com/th/id/OIP.vi3k8YMUNfOGHek13kWKCgAAAA?&rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+        <img src="https://e0.pxfuel.com/wallpapers/144/523/desktop-wallpaper-private-jet-private-plane.jpg" alt="">
+        <img src="https://i.pinimg.com/originals/72/6f/d8/726fd82997332aa31a3838f463813d28.jpg" alt="">
+        <img src="https://i.pinimg.com/originals/f2/f5/91/f2f59140a5e22311e96a257de8b84d5d.jpg" alt="">
+        <img src="https://i.pinimg.com/originals/95/0d/d5/950dd59ea56bf78831e31a3d45e29867.jpg" alt="">
+        <img src="https://i.pinimg.com/736x/ca/6f/af/ca6faf8a13ad66fd03b7b72b8be574d0.jpg" alt="">
+        <img src="https://images.unsplash.com/photo-1556103255-4443dbae8e5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+        <img src="https://designgrapher.com/wp-content/uploads/2015/10/types-of-photography46.jpg" alt="">
+        <img src="https://thewowstyle.com/wp-content/uploads/2014/11/583.jpg" alt="">
+    </div>
+</body>
+</html>
