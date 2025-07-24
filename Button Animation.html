@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated BUtton</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f4f4f4;
+        }
+
+        .animated-btn{
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .animated-btn:hover{
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+
+        .animated-btn:active{
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .animated-btn {
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+     @keyframes clickAnimation {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.9); }
+        100% { transform: scale(1); }
+    }
+
+    .animate-click {
+        animation: clickAnimation 0.3s ease;
+    }
+
+
+
+    </style>
+</head>
+<body>
+    <button class="animated-btn" id="btn">Click Me</button>
+    <script>
+        const btn= document.getElementById('btn');
+        btn.addEventListener('click', () =>{
+            btn.classList.add('animate-click');
+            setTimeout(() => btn.classList.remove('animate-click'), 300);
+        });
+    </script>
+</body>
+</html>

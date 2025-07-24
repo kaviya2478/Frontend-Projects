@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container{
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h2{
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .input-group{
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"]{
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+        padding: 10px 15px;
+        background: #007bff;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    li{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #f9f9f9;
+        border-radius: 6px;
+    }
+
+    li.completed span {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    .remove-btn{
+        background:#dc3545;
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .remove-btn:hover{
+        background: #b52b37;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button id="addBtn">Add</button>
+        </div>
+        <ul id="taskList">
+        </ul>
+    </div>
+
+    <script>
+        const addBtn = document.getElementById('addBtn');
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        addBtn.addEventListener('click', () =>{
+            const taskText = taskInput.value.trim();
+            if(taskText === ''){
+                alert('Please enter a task');
+                return;
+            }
+
+            const li = document.createElement('li');
+
+            const span = document.createElement('span');
+            span.textContent = taskText;
+
+            span.addEventListener('click', () =>{
+                li.classList.toggle('completed');
+            });
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.classList.add('remove-btn');
+            removeBtn.addEventListener('click', () =>{
+                li.remove();
+            });
+
+            li.appendChild(span);
+            li.appendChild(removeBtn);
+            taskList.appendChild(li);
+
+            taskInput.value='';
+        });
+
+        taskInput.addEventListener('keydown', (e) =>{
+            if(e.key === 'Enter'){
+                addBtn.click();
+            }
+        });
+ 
+    </script>
+    
+</body>
+</html>

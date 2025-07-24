@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App</title>
+    <style>
+         body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .quiz-container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        width: 400px;
+        text-align: center;
+    }
+
+    h2{
+        margin-bottom: 20px;
+    }
+
+    .question{
+        font-size: 18px;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .options{
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .options li{
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .score{
+        font-size: 20px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Quiz App</h2>
+        <div id="quiz">
+            <div class="question" id="question">Question text</div>
+            <ul class="options">
+                  <li><input type="radio" name="option" value="0"> <span id="opt0"></span></li>
+            <li><input type="radio" name="option" value="1"> <span id="opt1"></span></li>
+            <li><input type="radio" name="option" value="2"> <span id="opt2"></span></li>
+            <li><input type="radio" name="option" value="3"> <span id="opt3"></span></li>
+            </ul>
+             <button id="nextBtn">Next</button>
+        <div class="score" id="score"></div>
+        </div>
+    </div>
+
+    <script>
+         const quizData = [
+        {
+            question: "What does HTML stand for?",
+            options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyperlink Text Makeup Language", "Home Tool Markup Language"],
+            answer: 0
+        },
+        {
+            question: "Which language is used for styling web pages?",
+            options: ["HTML", "CSS", "JavaScript", "Python"],
+            answer: 1
+        },
+        {
+            question: "Which is not a JavaScript framework?",
+            options: ["React", "Angular", "Vue", "Django"],
+            answer: 3
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('question');
+    const optionsEl =[ document.getElementById('opt0'),document.getElementById('opt1'),document.getElementById('opt2'),document.getElementById('opt3')];
+    const nextBtn = document.getElementById('nextBtn');
+    const scoreEl = document.getElementById('score');
+
+
+    function loadQuestion(){
+        const q = quizData[currentQuestion];
+        questionEl.textContent = q.question;
+        optionsEl.forEach((opt, index) =>{
+            opt.textContent = q.options[index];
+        });
+    }
+    
+
+    function getSelectedOption(){
+        const radios = document.querySelectorAll('input[name= "option"]');
+        let selected = -1;
+        radios.forEach(radio =>{
+            if(radio.checked){
+                selected = parseInt(radio.value);
+            }
+        });
+        return selected;
+    }
+
+    nextBtn.addEventListener('click', () =>{
+        const selected = getSelectedOption();
+        if(selected === -1){
+            alert('Please select an answer');
+            return;
+        }
+
+        if(selected === quizData[currentQuestion].answer){
+            score++;
+        }
+
+        currentQuestion++;
+
+        if(currentQuestion<quizData.length){
+            loadQuestion();
+            document.querySelectorAll('input[name="option"]').forEach(radio=>radio.checked = false);
+        }
+        else{
+            document.getElementById('quiz').innerHTML =`<h3>Your Score: ${score} / ${quizData.length}</h3>`;
+        }
+    });
+
+    loadQuestion();
+
+    </script>
+    
+</body>
+</html>

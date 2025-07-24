@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Information</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .card {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        text-align: center;
+        width: 300px;
+    }
+
+    h2{
+        margin-bottom: 15px;
+    }
+
+    p{
+        font-size: 18px;
+        margin: 8px 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Car Information</h2>
+        <p id="make"></p>
+        <p id="model"></p>
+        <p id="year"></p>
+    </div>
+
+    <script>
+        const car = {
+            make:"Toyota",
+            model:"Camry",
+            year:2023
+        };
+
+        console.log("Car Object:", car);
+
+        document.getElementById('make').textContent = `Make: ${car.make}`;
+        document.getElementById('model').textContent = `Model: ${car.model}`;
+        document.getElementById('year').textContent = `Year: ${car.year}`;
+    </script>
+    
+</body>
+</html>
