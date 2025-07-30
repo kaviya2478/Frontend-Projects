@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slide-container{
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            
+        }
+
+        .slider{
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide{
+            width: 60%;
+            flex-shrink: 0;
+            display: none;
+            height: 700px;
+        }
+
+        .slide.active{
+            display: block;
+        }
+
+        .nav-btn{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding:12px 16px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 2;
+            border-radius: 50%;
+        }
+
+        #prev{
+            left: 10px;
+        }
+
+        #next{
+            right: 10px;
+        }
+
+        @media(max-width:600px){
+            .nav-btn{
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <img src="https://blenderartists.org/uploads/default/optimized/4X/5/d/6/5d67bec3977ef808d79673f3b427856b86f0215e_2_333x500.jpeg" class="slide active">
+            <img src="https://i.pinimg.com/originals/95/0d/d5/950dd59ea56bf78831e31a3d45e29867.jpg" class="slide">
+            <img src="https://blenderartists.org/uploads/default/optimized/4X/5/d/6/5d67bec3977ef808d79673f3b427856b86f0215e_2_333x500.jpeg" class="slide">
+        </div>
+        <button id="prev" class="nav-btn"><</button>
+        <button id="next" class="nav-btn">></button>
+    </div>
+    
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        const nextBtn = document.getElementById("next");
+        const prevBtn = document.getElementById("prev");
+        let currentIndex =0;
+        let intervalId;
+
+        function showSlide(index){
+            slides.forEach((slide, i) =>{
+                slide.classList.toggle("active", i===index);
+            });
+        }
+
+        function nextSlide(){
+            currentIndex = (currentIndex+1)% slides.length;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide(){
+            currentIndex=(currentIndex-1+slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function startSlider(){
+            intervalId = setInterval(nextSlide, 3000);
+        }
+
+        function stopSlider(){
+            clearInterval(intervalId);
+        }
+
+        nextBtn.addEventListener("click", () =>{
+            stopSlider();
+            nextSlide();
+            startSlider();
+        })
+
+        prevBtn.addEventListener("click", () =>{
+            stopSlider();
+            nextSlide();
+            startSlider();
+        })
+
+        startSlider();
+    </script>
+</body>
+</html>

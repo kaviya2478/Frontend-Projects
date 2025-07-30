@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: "#0f0f4f8";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .time-container{
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        #timer{
+            font-size: 48px;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <h1>Countdown Timer</h1>
+        <div id="timer">10:00</div>
+        <button onclick="startTimer()">Start</button>
+    </div>
+    <script>
+        let timeInSeconds = 600;
+        let timerInterval;
+
+        function updateDisplay(){
+            const minutes = Math.floor(timeInSeconds/60);
+            const seconds = timeInSeconds%60;
+            document.getElementById("timer").textContent = `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+        }
+
+        function startTimer(){
+            updateDisplay();
+
+            timerInterval = setInterval(()=>{
+                timeInSeconds--;
+
+                if(timeInSeconds<0){
+                    clearInterval(timerInterval);
+                    alert("Time's up!!");
+                    return;
+                }
+                updateDisplay();
+            },1000);
+        }
+
+    </script>
+</body>
+</html>
